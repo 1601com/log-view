@@ -1,5 +1,5 @@
 {
-  "name": "agentur1601com\\logView",
+  "name": "agentur1601com/logView",
   "type": "contao-bundle",
   "description": "View log files",
   "homepage": "https://contao.org",
@@ -26,7 +26,7 @@
   },
   "autoload": {
     "psr-4": {
-      "agentur1601com\\logView": "src/"
+      "agentur1601com\\logView\\": "src/"
     }
   },
   "autoload-dev": {

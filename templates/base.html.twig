@@ -1,1 +1,15 @@
-<p>Test</p>
+{% extends "@ContaoCore/Backend/be_page.html.twig" %}
+
+{% block headline %}
+    Not only the content of the `title`-tag but also the title of the content section.
+{% endblock %}
+
+{% block error %}
+    Will be placed within the error block.
+{% endblock %}
+
+{% block main %}
+    <div class="tl_listing_container">
+        Test
+    </div>
+{% endblock %}

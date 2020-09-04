@@ -1,9 +1,11 @@
 services:
-    _instanceof:
-        Contao\CoreBundle\Framework\FrameworkAwareInterface:
-            calls:
-                - ["setFramework", ["@contao.framework"]]
-
-        Symfony\Component\DependencyInjection\ContainerAwareInterface:
-            calls:
-                - ["setContainer", ["@service_container"]]
+  _defaults:
+    autoconfigure: true
+    autowire: true
+  agentur1601com\logView\EventListener\BackendMenuListener:
+    arguments:
+      - "@router"
+      - "@request_stack"
+    tags:
+      - { name: kernel.event_listener, event: contao.backend_menu_build, method: onBuild, priority: -255 }
+  agentur1601com\logView\Controller\IndexController: ~
