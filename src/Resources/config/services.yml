@@ -2,10 +2,10 @@ services:
   _defaults:
     autoconfigure: true
     autowire: true
-  agentur1601com\logView\EventListener\BackendMenuListener:
-    arguments:
-      - "@router"
-      - "@request_stack"
+  Agentur1601com\LogView\EventListener\BackendMenuListener:
     tags:
       - { name: kernel.event_listener, event: contao.backend_menu_build, method: onBuild, priority: -255 }
-  agentur1601com\logView\Controller\IndexController: ~
+  Agentur1601com\LogView\Controller\IndexController: ~
+  Agentur1601com\LogView\Service\Loader\DefaultLoader: ~
+  Agentur1601com\LogView\Service\Filter\DefaultFilter: ~
+  Agentur1601com\LogView\Service\Parser\SymfonyLogParser: ~

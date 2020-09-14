@@ -1,8 +1,8 @@
 <?php
 
-namespace agentur1601com\logView\EventListener;
+namespace Agentur1601com\LogView\EventListener;
 
-use agentur1601com\logView\Controller\IndexController;
+use Agentur1601com\LogView\Controller\IndexController;
 use Contao\CoreBundle\Event\MenuEvent;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;

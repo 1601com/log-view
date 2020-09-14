@@ -1,0 +1,19 @@
+{% extends "@ContaoCore/Backend/be_page.html.twig" %}
+
+{% block headline %}
+    Log view
+{% endblock %}
+
+{% block error %}
+    Error - Test
+{% endblock %}
+
+{% block main %}
+    <style>
+        .log-view_entry {
+            color: red;
+        }
+    </style>
+    {% include '@LogView/searchForm/default.html.twig' %}
+    {% include '@LogView/entryList/default.html.twig' with {'logData': logData, 'requestValues': requestValues} %}
+{% endblock %}

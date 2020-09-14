@@ -1,5 +1,5 @@
 {
-  "name": "agentur1601com/logView",
+  "name": "agentur1601com/log-view",
   "type": "contao-bundle",
   "description": "View log files",
   "homepage": "https://contao.org",
@@ -22,16 +22,11 @@
     "symfony/phpunit-bridge": "^3.2"
   },
   "extra": {
-    "contao-manager-plugin": "agentur1601com\\logView\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Agentur1601com\\LogView\\ContaoManager\\Plugin"
   },
   "autoload": {
     "psr-4": {
-      "agentur1601com\\logView\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "agentur1601com\\logView\\Tests\\": "tests/"
+      "Agentur1601com\\LogView\\": "src/"
     }
   }
 }

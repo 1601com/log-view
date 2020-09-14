@@ -8,7 +8,7 @@
  * @license LGPL-3.0-or-later
  */
 
-namespace agentur1601com\logView;
+namespace Agentur1601com\LogView;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

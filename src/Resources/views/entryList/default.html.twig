@@ -1,0 +1,5 @@
+<div class="tl_listing_container">
+    {% for entry in logData %}
+        {% include '@LogView/entry/default.html.twig' with {'entry': entry} %}
+    {% endfor %}
+</div>
