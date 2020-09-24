@@ -18,34 +18,40 @@
                value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER')] }}">
     </label>
     <fieldset>
+        {% set requestValueLevel = requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL')] %}
         <label>
             Error
             <input type="checkbox"
-                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[]"
+                   {% if (requestValueLevel is not empty) and (requestValueLevel.ERROR is defined) %}checked{% endif %}
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[ERROR]"
                    value="ERROR">
         </label>
         <label>
             Warning
             <input type="checkbox"
-                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[]"
+                   {% if (requestValueLevel is not empty) and (requestValueLevel.WARNING is defined) %}checked{% endif %}
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[WARNING]"
                    value="WARNING">
         </label>
         <label>
             Notice
             <input type="checkbox"
-                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[]"
+                   {% if (requestValueLevel is not empty) and (requestValueLevel.NOTICE is defined) %}checked{% endif %}
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[NOTICE]"
                    value="NOTICE">
         </label>
         <label>
             Info
             <input type="checkbox"
-                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[]"
-                   value="info">
+                   {% if (requestValueLevel is not empty) and (requestValueLevel.INFO is defined) %}checked{% endif %}
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[INFO]"
+                   value="INFO">
         </label>
         <label>
             Debug
             <input type="checkbox"
-                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[]"
+                   {% if (requestValueLevel is not empty) and (requestValueLevel.DEBUG is defined) %}checked{% endif %}
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[DEBUG]"
                    value="DEBUG">
         </label>
     </fieldset>
