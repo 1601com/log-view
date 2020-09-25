@@ -2,7 +2,7 @@
 
 namespace Agentur1601com\LogView\Service\Parser;
 
-class SymfonyLogParser extends AbstractParser
+class SymfonyParser extends AbstractParser
 {
 	const KEY_DATE = 'date';
 	const KEY_LOGGER = 'logger';
@@ -37,8 +37,6 @@ class SymfonyLogParser extends AbstractParser
 	{
 		if (!preg_match(sprintf('/\[(?P<%s>.*)\] (?P<%s>[\w-]+).(?P<%s>\w+): (?P<%s>[^\[\{]+) (?P<%s>[\[\{].*[\]\}]) (?P<%s>[\[\{].*[\]\}])/',
 			self::KEY_DATE, self::KEY_LOGGER, self::KEY_LEVEL, self::KEY_MESSAGE, self::KEY_CONTEXT, self::KEY_EXTRA), $logLine, $matches)) {
-			//todo use fallback error parsing
-			return null;
 			trigger_error(sprintf('log line does not match regex: %s', $logLine), E_USER_WARNING);
 			return null;
 		}
@@ -59,6 +57,9 @@ class SymfonyLogParser extends AbstractParser
 				}
 				$entry[$groupName] = $newDate->format('Y-m-d\\TH:i:s');
 				continue;
+			}
+			if($groupName === self::KEY_CONTEXT) {
+				$value = json_decode($value, true);
 			}
 			$entry[$groupName] = $value;
 		}

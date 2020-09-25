@@ -8,4 +8,4 @@ services:
   Agentur1601com\LogView\Controller\IndexController: ~
   Agentur1601com\LogView\Service\Loader\DefaultLoader: ~
   Agentur1601com\LogView\Service\Filter\DefaultFilter: ~
-  Agentur1601com\LogView\Service\Parser\SymfonyLogParser: ~
+  Agentur1601com\LogView\Service\Parser\SymfonyParser: ~

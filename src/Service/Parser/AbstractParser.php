@@ -7,7 +7,7 @@ abstract class AbstractParser
 
 	abstract protected function _parseFile(string $filePath): ?array;
 
-	final public function parseFileCollection(array $collection): array
+	final public function execute(array $collection): array
 	{
 		$result = [];
 		foreach ($collection as $filePath) {

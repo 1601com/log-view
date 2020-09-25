@@ -11,4 +11,5 @@
     <link rel="stylesheet" href="{{ asset('bundles/logview/scss/theme.css') }}" type="text/css">
     {% include '@LogView/searchForm/default.html.twig' %}
     {% include '@LogView/entryList/default.html.twig' with {'logData': logData, 'requestValues': requestValues} %}
+    <script src="{{ asset('bundles/logview/js/main.js') }}" type="text/javascript"></script>
 {% endblock %}

@@ -1,5 +1,11 @@
 .log-view_row:nth-child(odd) {
   background: #f7f7f7; }
+.log-view_row .entryContext, .log-view_row .entryExtra {
+  margin: 0.5em 0.5em 1em;
+  padding: 0.5em; }
+  .log-view_row .entryContext .entryContextTitle, .log-view_row .entryContext .entryExtraTitle, .log-view_row .entryExtra .entryContextTitle, .log-view_row .entryExtra .entryExtraTitle {
+    margin: 1em 1em 3em;
+    font-weight: bold; }
 
 .log-view_entry {
   display: grid;
@@ -8,11 +14,6 @@
   padding: 1em; }
   .log-view_entry div {
     word-break: break-word; }
-
-.hidden {
-  word-break: break-word;
-  padding: 1em;
-  color: red; }
 
 form {
   background: #f7f7f7;

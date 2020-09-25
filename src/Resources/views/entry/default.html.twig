@@ -5,9 +5,16 @@
         <div class="entryLevel">{{ entry.level }}</div>
         <div class="entryMassage">{{ entry.message }}</div>
     </div>
-    <div class="hidden">
-        {{ entry.context }}
-        {{ entry.extra }}
+    <div class="additionalInfo hidden">
+        <div class="entryContext">
+            <span class="entryContextTitle">Context</span>
+            <br>
+            {{ entry.context.exception|nl2br }}
+        </div>
+        <div class="entryExtra">
+            <span class="entryExtraTitle">Extra</span>
+            <br>
+            {{ entry.extra|nl2br }}
+        </div>
     </div>
 </div>
-

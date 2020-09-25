@@ -2,7 +2,7 @@
 
 namespace Agentur1601com\LogView\Service\Loader;
 
-use Agentur1601com\LogView\Service\Parser\SymfonyLogParser;
+use Agentur1601com\LogView\Service\Parser\SymfonyParser;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -15,7 +15,7 @@ abstract class AbstractLoader
 	private $_kernel;
 
 	/**
-	 * @var SymfonyLogParser
+	 * @var SymfonyParser
 	 */
 	private $_logParser;
 
@@ -26,9 +26,9 @@ abstract class AbstractLoader
 	/**
 	 * AbstractLoader constructor.
 	 * @param KernelInterface $kernel
-	 * @param SymfonyLogParser $logParser
+	 * @param SymfonyParser $logParser
 	 */
-	final public function __construct(KernelInterface $kernel, SymfonyLogParser $logParser)
+	final public function __construct(KernelInterface $kernel, SymfonyParser $logParser)
 	{
 		$this->_kernel = $kernel;
 		$this->_logParser = $logParser;
@@ -47,6 +47,6 @@ abstract class AbstractLoader
 			}
 			$files[] = $item->getRealPath();
 		}
-		return $this->_logParser->parseFileCollection($files);
+		return $this->_logParser->execute($files);
 	}
 }

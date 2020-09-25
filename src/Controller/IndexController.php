@@ -4,7 +4,7 @@ namespace Agentur1601com\LogView\Controller;
 
 use Agentur1601com\LogView\Service\Filter\DefaultFilter;
 use Agentur1601com\LogView\Service\Loader\DefaultLoader;
-use Agentur1601com\LogView\Service\Parser\SymfonyLogParser;
+use Agentur1601com\LogView\Service\Parser\SymfonyParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -117,7 +117,7 @@ class IndexController extends AbstractController
 		if ((!$logger = $request->get(self::REQUEST_KEY_LOGGER))) {
 			return true;
 		}
-		if (!$this->_logFilter->addFilter(SymfonyLogParser::KEY_LOGGER, $this->_logFilter::COMPARATOR_CONTAINS, $logger)) {
+		if (!$this->_logFilter->addFilter(SymfonyParser::KEY_LOGGER, $this->_logFilter::COMPARATOR_CONTAINS, $logger)) {
 			trigger_error('Unable to apply logger filter', E_USER_WARNING);
 			return false;
 		}
@@ -129,7 +129,7 @@ class IndexController extends AbstractController
 		if ((!$level = $request->get(self::REQUEST_KEY_LEVEL)) || !is_array($level)) {
 			return true;
 		}
-		if (!$this->_logFilter->addFilter(SymfonyLogParser::KEY_LEVEL, $this->_logFilter::COMPARATOR_IN, $level)) {
+		if (!$this->_logFilter->addFilter(SymfonyParser::KEY_LEVEL, $this->_logFilter::COMPARATOR_IN, $level)) {
 			trigger_error('Unable to apply level filter', E_USER_WARNING);
 			return false;
 		}
@@ -141,7 +141,7 @@ class IndexController extends AbstractController
 		if (!$message = $request->get(self::REQUEST_KEY_MESSAGE)) {
 			return true;
 		}
-		if (!$this->_logFilter->addFilter(SymfonyLogParser::KEY_MESSAGE, $this->_logFilter::COMPARATOR_CONTAINS, $message)) {
+		if (!$this->_logFilter->addFilter(SymfonyParser::KEY_MESSAGE, $this->_logFilter::COMPARATOR_CONTAINS, $message)) {
 			trigger_error('Unable to apply message filter', E_USER_WARNING);
 			return false;
 		}
@@ -151,13 +151,13 @@ class IndexController extends AbstractController
 	private function _applyDateTimeFilter(Request $request): bool
 	{
 		if ($dateGreaterThanValue = $request->get(self::REQUEST_KEY_DATETIME_START)) {
-			if (!$this->_logFilter->addFilter(SymfonyLogParser::KEY_DATE, $this->_logFilter::COMPARATOR_DATETIME_GREATER_THAN, $dateGreaterThanValue)) {
+			if (!$this->_logFilter->addFilter(SymfonyParser::KEY_DATE, $this->_logFilter::COMPARATOR_DATETIME_GREATER_THAN, $dateGreaterThanValue)) {
 				trigger_error('Unable to add filter for datetime', E_USER_WARNING);
 				return false;
 			}
 		}
 		if ($dateLesserThanValue = $request->get(self::REQUEST_KEY_DATETIME_END)) {
-			if (!$this->_logFilter->addFilter(SymfonyLogParser::KEY_DATE, $this->_logFilter::COMPARATOR__DATETIME_LESSER_THAN, $dateLesserThanValue)) {
+			if (!$this->_logFilter->addFilter(SymfonyParser::KEY_DATE, $this->_logFilter::COMPARATOR__DATETIME_LESSER_THAN, $dateLesserThanValue)) {
 				trigger_error('Unable to add filter for datetime', E_USER_WARNING);
 				return false;
 			}

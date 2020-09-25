@@ -1,55 +1,64 @@
-.log-view_row{
-  &:nth-child(odd){
+.log-view_row {
+  &:nth-child(odd) {
     background: $color-grey;
+  }
+
+  .entryContext, .entryExtra {
+    margin: 0.5em 0.5em 1em;
+    padding: 0.5em;
+
+    .entryContextTitle, .entryExtraTitle {
+      margin: 1em 1em 3em;
+      font-weight: bold;
+    }
   }
 }
 
 .log-view_entry {
-  //color: $color-error;
   display: grid;
   grid-template-columns: 170px 70px 70px auto 1fr;
   grid-gap: 1em;
   padding: 1em;
-  div{
+
+  div {
     word-break: break-word;
   }
 }
 
-.hidden{
-  word-break: break-word;
-  padding: 1em;
-  color: $color-error;
-}
-
-form{
+form {
   background: $color-grey;
   margin: 1em;
   padding: 1em;
-  .row{
+
+  .row {
     padding: 1em 0;
   }
-  .dateWrapper,.massageWrapper, .loggerWrapper {
-    span{
+
+  .dateWrapper, .massageWrapper, .loggerWrapper {
+    span {
       display: inline-block;
       margin: 0 0.5em;
     }
   }
-  .addInfo{
-    border:none;
+
+  .addInfo {
+    border: none;
     background: $color-mid-grey;
     padding: 0.5em;
   }
-  label{
+
+  label {
     display: inline-flex;
     align-items: baseline;
   }
 }
 
-button{
+button {
   padding: 0.5em;
   background: $color-mid-grey;
   border: solid #fff 1px;
-  &:hover{
+
+  &:hover {
     background: #000;
     color: #fff;
   }
