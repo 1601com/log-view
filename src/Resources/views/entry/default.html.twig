@@ -1,10 +1,13 @@
-<div class="log-view_entry">
-    {{ entry.date }}
-    {{ entry.logger }}
-    {{ entry.level }}
-    {{ entry.message }}
+<div class="log-view_row">
+    <div class="log-view_entry">
+        <div class="date">{{ entry.date }}</div>
+        <div class="logger">{{ entry.logger }}</div>
+        <div class="entryLevel">{{ entry.level }}</div>
+        <div class="entryMassage">{{ entry.message }}</div>
+    </div>
+    <div class="hidden">
+        {{ entry.context }}
+        {{ entry.extra }}
+    </div>
 </div>
-<div class="hidden">
-    {{ entry.context }}
-    {{ entry.extra }}
-</div>
+

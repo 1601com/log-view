@@ -1,65 +1,71 @@
 <form method="GET">
-    <label>
-        Zeit von
-        <input type="datetime-local"
-               name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_START') }}"
-               value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_START')] }}">
-    </label>
-    <label>
-        Zeit bis
-        <input type="datetime-local"
-               name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_END') }}"
-               value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_END')] }}">
-    </label>
-    <label>
-        Logger
-        <input type="text"
-               name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER') }}"
-               value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER')] }}">
-    </label>
-    <fieldset>
-        {% set requestValueLevel = requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL')] %}
+    <div class="dateWrapper row">
         <label>
-            Error
+            <span>Zeit von</span>
+            <input type="datetime-local"
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_START') }}"
+                   value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_START')] }}">
+        </label>
+        <label>
+            <span>Zeit bis</span>
+            <input type="datetime-local"
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_END') }}"
+                   value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_DATETIME_END')] }}">
+        </label>
+    </div>
+    <fieldset class="addInfo">
+        {% set requestValueLevel = requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL')] %}
+        <span>Error level</span>
+        <label>
             <input type="checkbox"
                    {% if (requestValueLevel is not empty) and (requestValueLevel.ERROR is defined) %}checked{% endif %}
                    name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[ERROR]"
                    value="ERROR">
+            <span>Error</span>
         </label>
         <label>
-            Warning
             <input type="checkbox"
                    {% if (requestValueLevel is not empty) and (requestValueLevel.WARNING is defined) %}checked{% endif %}
                    name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[WARNING]"
                    value="WARNING">
+            <span>Warning</span>
         </label>
         <label>
-            Notice
             <input type="checkbox"
                    {% if (requestValueLevel is not empty) and (requestValueLevel.NOTICE is defined) %}checked{% endif %}
                    name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[NOTICE]"
                    value="NOTICE">
+            <span>Notice</span>
         </label>
         <label>
-            Info
             <input type="checkbox"
                    {% if (requestValueLevel is not empty) and (requestValueLevel.INFO is defined) %}checked{% endif %}
                    name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[INFO]"
                    value="INFO">
+            <span>Info</span>
         </label>
         <label>
-            Debug
             <input type="checkbox"
                    {% if (requestValueLevel is not empty) and (requestValueLevel.DEBUG is defined) %}checked{% endif %}
                    name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LEVEL') }}[DEBUG]"
                    value="DEBUG">
+            <span>Debug</span>
         </label>
     </fieldset>
-    <label>
-        Message (like search)
-        <input type="text"
-               name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_MESSAGE') }}"
-               value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_MESSAGE')] }}">
-    </label>
+    <div class="loggerWrapper row">
+        <label>
+            <span>Logger</span>
+            <input type="text"
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER') }}"
+                   value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER')] }}">
+        </label>
+ 
+        <label>
+            <span>Message (like search)</span>
+            <input type="text"
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_MESSAGE') }}"
+                   value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_MESSAGE')] }}">
+        </label>
+    </div>
     <button type="submit">Search</button>
 </form>

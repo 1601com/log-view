@@ -1,0 +1,42 @@
+.log-view_row:nth-child(odd) {
+  background: #f7f7f7; }
+
+.log-view_entry {
+  display: grid;
+  grid-template-columns: 170px 70px 70px auto 1fr;
+  grid-gap: 1em;
+  padding: 1em; }
+  .log-view_entry div {
+    word-break: break-word; }
+
+.hidden {
+  word-break: break-word;
+  padding: 1em;
+  color: red; }
+
+form {
+  background: #f7f7f7;
+  margin: 1em;
+  padding: 1em; }
+  form .row {
+    padding: 1em 0; }
+  form .dateWrapper span, form .massageWrapper span, form .loggerWrapper span {
+    display: inline-block;
+    margin: 0 0.5em; }
+  form .addInfo {
+    border: none;
+    background: #e3e3e3;
+    padding: 0.5em; }
+  form label {
+    display: inline-flex;
+    align-items: baseline; }
+
+button {
+  padding: 0.5em;
+  background: #e3e3e3;
+  border: solid #fff 1px; }
+  button:hover {
+    background: #000;
+    color: #fff; }
+
+/*# sourceMappingURL=theme.css.map */

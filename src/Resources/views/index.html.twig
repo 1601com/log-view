@@ -8,11 +8,7 @@
 {% endblock %}
 
 {% block main %}
-    <style>
-        .log-view_entry {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('bundles/logview/scss/theme.css') }}" type="text/css">
     {% include '@LogView/searchForm/default.html.twig' %}
     {% include '@LogView/entryList/default.html.twig' with {'logData': logData, 'requestValues': requestValues} %}
 {% endblock %}
