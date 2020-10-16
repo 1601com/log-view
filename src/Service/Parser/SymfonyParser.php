@@ -35,7 +35,7 @@ class SymfonyParser extends AbstractParser
 			}
 			$currentAmount++;
 			$result[] = $entry;
-			if ($currentAmount >= $this->_limit) {
+			if ($currentAmount >= $this->_limitLeftOver) {
 				return $result;
 			}
 		}

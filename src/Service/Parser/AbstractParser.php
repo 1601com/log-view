@@ -14,13 +14,20 @@ abstract class AbstractParser
 
 	protected $_limit = 50;
 
+	protected $_limitLeftOver = 0;
+
 	abstract protected function _parseFile(string $filePath): ?array;
 
 	final public function execute(array $collection): array
 	{
 		$result = [];
+		$this->_limitLeftOver = $this->_limit;
 		foreach ($collection as $filePath) {
 			$result = array_merge($result, $this->_parseFile($filePath));
+			$this->_limitLeftOver = $this->_limit - count($result);
+			if ($this->_limitLeftOver <= 0) {
+				return $result;
+			}
 		}
 		return $result;
 	}
