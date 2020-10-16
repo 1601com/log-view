@@ -36,7 +36,7 @@ abstract class AbstractFilter
 
 	final public function isEntryFiltered(array $entry): bool
 	{
-		return $this->_isValidEntry($entry);
+		return !$this->_isValidEntry($entry);
 	}
 
 	final private function _isValidEntry(array $entry): bool
