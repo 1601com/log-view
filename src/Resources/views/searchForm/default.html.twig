@@ -54,18 +54,23 @@
     </fieldset>
     <div class="loggerWrapper row">
         <label>
-            <span>Logger</span>
-            <input type="text"
-                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER') }}"
-                   value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER')] }}">
-        </label>
-
-        <label>
             <span>Message (like search)</span>
             <input type="text"
                    name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_MESSAGE') }}"
                    value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_MESSAGE')] }}">
         </label>
+        <label>
+            <span>Logger</span>
+            <input type="text"
+                   name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER') }}"
+                   value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LOGGER')] }}">
+        </label>
     </div>
     <button type="submit">Search</button>
+    <label>
+        <span>Anzahl Einträge</span>
+        <input type="number"
+               name="{{ constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LIMIT') }}"
+               value="{{ requestValues[constant('Agentur1601com\\LogView\\Controller\\IndexController::REQUEST_KEY_LIMIT')] }}">
+    </label>
 </form>

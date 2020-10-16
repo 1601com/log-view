@@ -31,6 +31,7 @@ class IndexController extends AbstractController
 	const REQUEST_KEY_MESSAGE = 'message';
 	const REQUEST_KEY_LEVEL = 'level';
 	const REQUEST_KEY_LOGGER = 'logger';
+	const REQUEST_KEY_LIMIT = 'limit';
 
 	/**
 	 * @var TwigEnvironment
@@ -44,6 +45,12 @@ class IndexController extends AbstractController
 	 * @var DefaultFilter
 	 */
 	private $_logFilter;
+
+	private $_defaultLimit = 50;
+	/**
+	 * @var int
+	 */
+	private $_usedLimit = 0;
 
 	/**
 	 * IndexController constructor.
@@ -67,12 +74,11 @@ class IndexController extends AbstractController
 	 */
 	public function __invoke(Request $request)
 	{
-		$result = $this->_logLoader->load();
 		if (!$this->_applyRequestFilter($request)) {
 			trigger_error('Failed ot apply log filter from request data', E_USER_WARNING);
 			return null;
 		}
-		$this->_logFilter->applyFilter($result);
+		$result = $this->_logLoader->load($this->_logFilter);
 		return new Response($this->_twig->render('@LogView/index.html.twig', [
 			'logData' => $result,
 			'requestValues' => [
@@ -81,6 +87,7 @@ class IndexController extends AbstractController
 				self::REQUEST_KEY_LEVEL => $request->get(self::REQUEST_KEY_LEVEL),
 				self::REQUEST_KEY_MESSAGE => $request->get(self::REQUEST_KEY_MESSAGE),
 				self::REQUEST_KEY_LOGGER => $request->get(self::REQUEST_KEY_LOGGER),
+				self::REQUEST_KEY_LIMIT => $this->_usedLimit,
 			]
 		]));
 	}
@@ -93,6 +100,10 @@ class IndexController extends AbstractController
 	 */
 	private function _applyRequestFilter(Request $request): bool
 	{
+		if (!$this->_applyLimit($request)) {
+			trigger_error('Failed to apply limit', E_USER_WARNING);
+			return false;
+		}
 		if (!$this->_applyDateTimeFilter($request)) {
 			trigger_error('Failed to apply date time filter', E_USER_WARNING);
 			return false;
@@ -107,6 +118,19 @@ class IndexController extends AbstractController
 		}
 		if (!$this->_applyLoggerFilter($request)) {
 			trigger_error('Failed to apply logger filter', E_USER_WARNING);
+			return false;
+		}
+		return true;
+	}
+
+	private function _applyLimit(Request $request): bool
+	{
+		if ((!$limit = $request->get(self::REQUEST_KEY_LIMIT))) {
+			$limit = $this->_defaultLimit;
+		}
+		$this->_usedLimit = $limit;
+		if (!$this->_logLoader->setLimit($limit)) {
+			trigger_error('Unable to apply limit', E_USER_WARNING);
 			return false;
 		}
 		return true;

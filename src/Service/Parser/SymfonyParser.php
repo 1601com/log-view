@@ -10,6 +10,7 @@ class SymfonyParser extends AbstractParser
 	const KEY_MESSAGE = 'message';
 	const KEY_CONTEXT = 'context';
 	const KEY_EXTRA = 'extra';
+	const KEY_MESSAGE_ERROR = 'messageError';
 
 	protected function _parseFile(string $filePath): ?array
 	{
@@ -20,6 +21,7 @@ class SymfonyParser extends AbstractParser
 		$result = [];
 		//go through each file in reverse so the newest one is at the top
 		$data = explode(PHP_EOL, $fileContent);
+		$currentAmount = 0;
 		for (end($data); key($data) !== null; prev($data)) {
 			if (!($line = current($data))) {
 				//skip empty lines
@@ -28,7 +30,14 @@ class SymfonyParser extends AbstractParser
 			if (!$entry = $this->_parseLogLine($line)) {
 				continue;
 			}
+			if ($this->_isFiltered($entry)) {
+				continue;
+			}
+			$currentAmount++;
 			$result[] = $entry;
+			if ($currentAmount >= $this->_limit) {
+				return $result;
+			}
 		}
 		return $result;
 	}
@@ -46,6 +55,7 @@ class SymfonyParser extends AbstractParser
 			self::KEY_LOGGER => null,
 			self::KEY_LEVEL => null,
 			self::KEY_MESSAGE => null,
+			self::KEY_MESSAGE_ERROR => null,
 			self::KEY_CONTEXT => null,
 			self::KEY_EXTRA => null,
 		];
@@ -58,8 +68,15 @@ class SymfonyParser extends AbstractParser
 				$entry[$groupName] = $newDate->format('Y-m-d\\TH:i:s');
 				continue;
 			}
-			if($groupName === self::KEY_CONTEXT) {
+			if ($groupName === self::KEY_CONTEXT) {
 				$value = json_decode($value, true);
+			}
+			if ($groupName === self::KEY_MESSAGE && (str_contains($value, 'Uncaught PHP Exception') !== false)) {
+				//we can parse the "real" message out and remove clutter
+				$messageParts = explode('"', $value);
+				unset($messageParts[0]);
+				unset($messageParts[count($messageParts) - 1]);
+				$entry[self::KEY_MESSAGE_ERROR] = implode('', $messageParts);
 			}
 			$entry[$groupName] = $value;
 		}

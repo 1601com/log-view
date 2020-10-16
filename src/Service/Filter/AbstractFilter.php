@@ -34,15 +34,9 @@ abstract class AbstractFilter
 		return true;
 	}
 
-	final public function applyFilter(array &$entries): bool
+	final public function isEntryFiltered(array $entry): bool
 	{
-		foreach ($entries as $index => $entry) {
-			if ($this->_isValidEntry($entry)) {
-				continue;
-			}
-			unset($entries[$index]);
-		}
-		return true;
+		return $this->_isValidEntry($entry);
 	}
 
 	final private function _isValidEntry(array $entry): bool
@@ -102,7 +96,7 @@ abstract class AbstractFilter
 		return true;
 	}
 
-	private function _convertToTimestamp(string $value, bool $hasSeconds = true): int
+	final private function _convertToTimestamp(string $value, bool $hasSeconds = true): int
 	{
 		$seconds = '';
 		if ($hasSeconds) {

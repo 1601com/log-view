@@ -3,13 +3,21 @@
         <div class="date">{{ entry.date }}</div>
         <div class="logger">{{ entry.logger }}</div>
         <div class="entryLevel">{{ entry.level }}</div>
-        <div class="entryMassage">{{ entry.message }}</div>
+        <div class="entryMassage">
+            {% if entry.messageError %}
+                {{ entry.messageError }}
+            {% else %}
+                {{ entry.message }}
+            {% endif %}
+        </div>
     </div>
     <div class="additionalInfo hidden">
         <div class="entryContext">
             <span class="entryContextTitle">Context</span>
             <br>
-            {{ entry.context.exception|nl2br }}
+            {% if entry.context.exception is defined %}
+                {{ entry.context.exception|nl2br }}
+            {% endif %}
         </div>
         <div class="entryExtra">
             <span class="entryExtraTitle">Extra</span>
