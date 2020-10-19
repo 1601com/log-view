@@ -1,8 +1,8 @@
 var logView = {
 	init: function () {
-		document.querySelectorAll('.log-view_row').forEach(function (value, index) {
+		document.querySelectorAll('.log-view_entry').forEach(function (value, index) {
 			value.addEventListener('click', function (element) {
-				var classList = this.querySelector('.additionalInfo').classList;
+				var classList = this.parentNode.querySelector('.additionalInfo').classList;
 				if (classList.contains('hidden')) {
 					classList.remove('hidden');
 					return;

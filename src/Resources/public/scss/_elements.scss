@@ -1,4 +1,5 @@
 .log-view_row {
+
   &:nth-child(odd) {
     background: $color-grey;
   }
@@ -16,6 +17,7 @@
 
 .log-view_entry {
   display: grid;
+  cursor: pointer;
   grid-template-columns: 170px 70px 70px auto 1fr;
   grid-gap: 1em;
   padding: 1em;
