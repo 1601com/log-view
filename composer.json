@@ -1,8 +1,9 @@
 {
   "name": "agentur1601com/log-view",
   "type": "contao-bundle",
-  "description": "View log files",
-  "homepage": "https://contao.org",
+  "description": "View log files in the backend",
+  "homepage": "https://www.1601.com",
+  "license": "MIT",
   "require": {
     "php": "^7.0",
     "contao/core-bundle": "4.9.*",
