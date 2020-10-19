@@ -41,7 +41,7 @@ class BackendMenuListener
 			return;
 		}
 
-		$contentNode = $tree->getChild('content');
+		$contentNode = $tree->getChild('system');
 
 		$node = $factory->createItem('log-view')
 			->setUri($this->router->generate(IndexController::class))
